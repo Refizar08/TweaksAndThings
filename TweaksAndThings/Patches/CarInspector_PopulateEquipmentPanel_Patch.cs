@@ -10,6 +10,7 @@ using System;
 using System.Linq;
 using UI.Builder;
 using UI.CarInspector;
+using Core;
 
 namespace RMROC451.TweaksAndThings.Patches;
 
@@ -60,8 +61,8 @@ internal static class CarInspector_PopulateEquipmentPanel_Patch
                 Multiplayer.SendError(
                     StateManager.Shared.PlayersManager.LocalPlayer,
                     hasDestination
-                        ? $"Copied repair destination to {updatedCount} connected {(updatedCount == 1 ? "car" : "cars")}."
-                        : $"Cleared repair destination from {updatedCount} connected {(updatedCount == 1 ? "car" : "cars")}.",
+                        ? $"Copied repair destination to {updatedCount} connected {"car".Pluralize(updatedCount == 1 ? 1 : 0)}."
+                        : $"Cleared repair destination from {updatedCount} connected {"car".Pluralize(updatedCount == 1 ? 1 : 0)}.",
                     default);
 
                 hstack.Rebuild();
